@@ -38,20 +38,20 @@ body {
     display: flex;
     align-items: center;
     padding: 1rem; 
-    font-size: 21px; /* Increased font size */ 
+    font-size: 21px;
     font-weight: 500;
   } 
   
 .navigation-account-cart {
-    display: flex; /* Arrange buttons horizontally */
+    display: flex; 
 }
 
 .navigation-account-cart button{
-    margin-left: 20px; /* Space between buttons */
-    padding: 12px 20px;  /* Button size */
+    margin-left: 20px; 
+    padding: 12px 20px; 
     border: none;       
     border-radius: 10px; 
-    background-color: #e0e0e0; /* Example color */
+    background-color: #e0e0e0; 
     cursor: pointer;
     font-size: 20px;
 }

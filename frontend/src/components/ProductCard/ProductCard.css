@@ -1,0 +1,31 @@
+.product{
+    width: 21rem;
+    border: 0.5px solid #ddd;
+}
+.product-name{
+    text-align: left;
+    font-size: 1.1rem;
+    margin: 0.25vh 0vh;
+}
+.product-prices{
+    display: flex;
+    gap: 2px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.product-price-sale{
+    color: #517b71;
+    font-size: 20px;
+    font-weight: 550px;
+}
+.product-price-original{
+    color: #b98383;
+    font-size: 20px;
+    font-weight: 550px;
+    text-decoration: line-through;
+}
+.product:hover{
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transform: scale(1.10);
+    border-color: #374151;
+}
