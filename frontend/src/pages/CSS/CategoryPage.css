@@ -1,0 +1,35 @@
+.page-category {
+    padding: 50px 150px;
+    background-color: #f8f8f8; 
+}
+
+.page-category h1 { 
+    color: #333; 
+    font-size: 36px;  
+    font-weight: 700;
+    text-align: center; 
+}
+
+.page-category hr {
+    width: 650px; 
+    height: 3px; 
+    border-radius: 5px;
+    background: #007bff; 
+    margin: 20px auto;  
+}
+
+.page-category-product {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 20px;
+    column-gap: 1px;
+    margin-top: 50px; 
+}
+
+.page-category p {
+    color: #333; 
+    font-size: 25px; 
+    line-height: 1.5; 
+    margin-bottom: 20px;
+    text-align: center;  
+}

@@ -10,9 +10,9 @@ const Trending = () => {
         <h1>Trending Products RIGHT NOW!!!</h1>
         <hr/>
         <div className='trending-products'>
-            {trending_products.map((product,p)=>{
+            {trending_products.map((product,i)=>{
                 return <ProductCard 
-                key={p} 
+                key={i} 
                 product_id={product.product_id} 
                 product_name={product.product_name}
                 product_image={product.product_image}
