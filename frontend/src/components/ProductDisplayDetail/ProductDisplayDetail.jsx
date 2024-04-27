@@ -1,0 +1,51 @@
+import React from 'react'
+import './ProductDisplayDetail.css'
+import rating_star_bright from '../../Assets/rating_star_bright.png'
+import rating_star_dark from '../../Assets/rating_star_dark.png'
+
+const ProductDisplayDetail = (props) => {
+    const {product} = props;
+
+  return (
+    <div className='productdisplaypage'>
+        <div className='productdisplaypage-left'>
+            <img src={product.product_image} alt="" />
+        </div>
+        <div className='productdisplaypage-right'>
+            <h1>{product.product_name}</h1>
+            <div className='productdisplaypage-right-ratingstar' >
+                <img src={rating_star_bright} alt="" />
+                <img src={rating_star_bright} alt="" />
+                <img src={rating_star_bright} alt="" />
+                <img src={rating_star_bright} alt="" />
+                <img src={rating_star_dark} alt="" />
+                <p>(25) Reviews</p>
+            </div>
+            <div className='productdisplaypage-right-prices'>
+                <div className='productdisplay-right-original-price'>
+                    Original Price: £{product.original_price}
+                </div>
+                <div className='productdisplaypage-right-sale-price'>
+                    Sale Price: £{product.sale_price}
+                </div>
+            </div>
+            <div className='productdisplaypage-right-description'>
+                Upgrade your everyday style with our soft, breathable cotton t-shirt. Perfect for relaxed days.
+                The classic tee, reimagined. Effortless style, superior comfort.
+                Your new favorite tee! Versatile, comfortable, and available in a range of colors.
+            </div>
+            <div className='productdisplaypage-right-sizing'>
+                <h1>Size:</h1>
+                <button>S</button>
+                <button>M</button>
+                <button>L</button>
+                <button>XL</button>
+            </div>
+            <hr />
+            <button className='productdisplaypage-right-addcart'>ADD TO SHOPPING CART</button>
+        </div>
+    </div>
+  )
+}
+
+export default ProductDisplayDetail

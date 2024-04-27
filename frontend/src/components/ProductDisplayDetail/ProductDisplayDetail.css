@@ -1,0 +1,113 @@
+.productdisplaypage {
+    display: flex;
+    gap: 40px;
+    margin: 40px 10%; 
+}
+
+.productdisplaypage-left {
+    width: 40%; 
+}
+
+.productdisplaypage-left img {
+    width: 100%; 
+    height: auto; 
+    border: 1px solid #e0e0e0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.productdisplaypage-right {
+    width: 60%; 
+    text-align: left;
+}
+
+.productdisplaypage-right h1 {
+    font-size: 32px;
+    font-weight: 600; 
+    margin-bottom: 15px;
+}
+
+.productdisplaypage-right-ratingstar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.productdisplaypage-right-ratingstar img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+} 
+
+.productdisplaypage-right-ratingstar p {
+    color: #666; 
+    margin-left: 10px; 
+}
+
+.productdisplaypage-right-prices {
+    margin-bottom: 20px;
+}
+
+.productdisplay-right-original-price {
+    color: #999;
+    text-decoration: line-through;
+    margin-bottom: 5px;
+}
+
+.productdisplaypage-right-sale-price {
+    color: #e95959; /* Example red price color */
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.productdisplaypage-right-description {
+    font-size: 16px; 
+    margin-bottom: 25px;
+}
+
+.productdisplaypage-right-sizing {
+    margin-bottom: 20px;
+}
+
+.productdisplaypage-right-sizing h1 { 
+    font-size: 20px; 
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.productdisplaypage-right-sizing button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px; 
+    cursor: pointer;
+    margin-right: 8px; 
+} 
+
+.productdisplaypage-right-sizing button { 
+    background-color: #1f82ec; 
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+    font-size: 16px; 
+}
+
+.productdisplaypage-right button:hover {
+    background-color: #fc0000; 
+}
+
+.productdisplaypage-right-addcart { 
+    background-color: #e95959; /* A distinct color for the cart button */
+    color: #fff;
+    padding: 20px 50px; /* Larger button size */
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+    font-size: 20px; 
+    margin-top: 15px; /* Add some spacing for separation */
+}
+
+.productdisplaypage-right-addcart:hover {
+    background-color: #c54a4a; /* Slightly darker hover */
+}

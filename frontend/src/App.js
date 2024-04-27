@@ -8,6 +8,7 @@ import WomenPage from './pages/WomenPage';
 import KidPage from './pages/KidPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SiteFooter from './components/SiteFooter/SiteFooter';
+import ProductDisplayPage from './pages/ProductDisplayPage';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
             <Route path='/men' element={<MenPage/>} />
             <Route path='/women' element={<WomenPage/>} />
             <Route path='/kid' element={<KidPage/>} />
+            <Route path='product' element={<ProductDisplayPage/>}>
+              <Route path=':productID' element={<ProductDisplayPage/>}/>
+            </Route>
             <Route path='/cart' element={<Cart/>} />
             <Route path='/account' element={<Account/>} />
           </Routes>
