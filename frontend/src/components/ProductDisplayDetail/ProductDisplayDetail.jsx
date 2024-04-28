@@ -30,9 +30,7 @@ const ProductDisplayDetail = (props) => {
                 </div>
             </div>
             <div className='productdisplaypage-right-description'>
-                Upgrade your everyday style with our soft, breathable cotton t-shirt. Perfect for relaxed days.
-                The classic tee, reimagined. Effortless style, superior comfort.
-                Your new favorite tee! Versatile, comfortable, and available in a range of colors.
+                {product.product_description}
             </div>
             <div className='productdisplaypage-right-sizing'>
                 <h1>Size:</h1>

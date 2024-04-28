@@ -6,7 +6,7 @@ const ProductCard = (product) => {
   return (
     <div className='product'>
         <Link to = {`/product/${product.product_id}`}>
-          <img src={product.product_image} alt=''/>
+          <img onClick={window.scrollTo(0,0)} src={product.product_image} alt=''/>
         </Link>
         <p className='product-name'>{product.product_name}</p>
         <div className='product-prices'>

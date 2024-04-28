@@ -1,6 +1,6 @@
 import React from 'react'
 import './ProductDisplaySuggestion.css'
-import trending_products from '../../Assets/trending_products'
+import similar_products from '../../Assets/similar_products'
 import ProductCard from '../ProductCard/ProductCard'
 
 const ProductDisplaySuggestion = () => {
@@ -10,7 +10,7 @@ const ProductDisplaySuggestion = () => {
         <h1>You Might Also Like</h1>
         <hr/>
         <div className='trending-products'>
-            {trending_products.map((product,i)=>{
+            {similar_products.map((product,i)=>{
                 return <ProductCard 
                 key={i} 
                 product_id={product.product_id} 

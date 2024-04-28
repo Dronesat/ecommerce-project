@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import productList from '../Assets/all_product';
+import trendingProductList from '../Assets/trending_products';
 
 //Create the context any initialise with null 
 export const EcommerceContext = createContext(null);
@@ -8,7 +9,10 @@ export const EcommerceContext = createContext(null);
 //without having to pass props down manually at every level.
 //Access functions and values in any components
 const EcommerceContextProvider = (props) => {
-    const ecommercecontextValue = {productList};
+    const ecommercecontextValue = {
+        productList,
+        trendingProductList
+    };
     return (
         <EcommerceContext.Provider value={ecommercecontextValue}>
             {props.children}

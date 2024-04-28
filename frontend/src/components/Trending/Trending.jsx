@@ -1,16 +1,18 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import './Trending.css'
-import trending_products from '../../Assets/trending_products'
 import ProductCard from '../ProductCard/ProductCard'
+import { EcommerceContext } from '../../EcommerceContext/EcommerceContext'
 
-const Trending = () => {
+const Trending = (props) => {
+  const {productList} = useContext(EcommerceContext);
   return (
     <div className='trending'>
         <hr/>
-        <h1>Trending Products RIGHT NOW!!!</h1>
+        <h1>{props.title}</h1>
         <hr/>
         <div className='trending-products'>
-            {trending_products.map((product,i)=>{
+            {productList.map((product,i)=>{
+              if (props.category === product.product_category && props.trending === product.product_trending){
                 return <ProductCard 
                 key={i} 
                 product_id={product.product_id} 
@@ -18,6 +20,10 @@ const Trending = () => {
                 product_image={product.product_image}
                 sale_price={product.sale_price}
                 original_price={product.original_price}/>
+              } else {
+                return null;
+              }
+                
             })}
         </div>
     </div>
