@@ -1,6 +1,5 @@
-/* CSS/ProductDisplayReview.css */
 .productdisplayreview {
-    margin: 40px; /* Space around the entire review section */
+    margin: 40px;
     border: 1px solid #e0e0e0;
     padding: 25px; 
     border-radius: 5px;
@@ -60,8 +59,8 @@
 }
 
 .verified-purchase { 
-    background-color: #e0f7d3; /* Light green background */
-    color: #2e7d32; /* Darker green text */
+    background-color: #e0f7d3;
+    color: #2e7d32; 
     font-size: 12px;
     padding: 2px 5px;
     border-radius: 3px; 
@@ -75,7 +74,7 @@
 
 .review-date-verified div { 
     margin-right: 10px; 
-    font-family: 'Roboto', sans-serif; /* Example font */
-    font-weight: 500; /* Slightly bolder */
-    color: #666;      /* Slightly muted color */
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 500; 
+    color: #666;     
 } 

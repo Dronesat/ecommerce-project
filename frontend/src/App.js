@@ -1,7 +1,7 @@
 import './App.css';
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import HomePage from './pages/HomePage';
-import Cart from './pages/Cart'
+import ShoppingCartPage from './pages/ShoppingCartPage';
 import Account from './pages/Account'
 import MenPage from './pages/MenPage';
 import WomenPage from './pages/WomenPage';
@@ -24,7 +24,7 @@ function App() {
             <Route path='product' element={<ProductDisplayPage/>}>
               <Route path=':productID' element={<ProductDisplayPage/>}/>
             </Route>
-            <Route path='/cart' element={<Cart/>} />
+            <Route path='/cart' element={<ShoppingCartPage/>} />
             <Route path='/account' element={<Account/>} />
           </Routes>
         <SiteFooter/>

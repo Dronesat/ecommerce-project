@@ -1,0 +1,99 @@
+.shoppingcart {
+    margin: 40px; 
+    font-family: Arial, sans-serif;
+    padding: 15px 120px; 
+    text-align: left;
+}
+
+/* Title Row Styling */
+.shoppingcart-titlerow {
+    display: grid; 
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr; /* Adjust column widths as needed */
+    font-weight: 600;
+    font-size: 21px; 
+    border-bottom: 1px solid #e0e0e0; 
+}
+
+/* Product Listing Styling */
+.shoppingcart-productlisting {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+    align-items: center; 
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.shoppingcart-productlisting-icon {
+    max-width: 40%;
+    height: auto;
+    margin-right: 20px;
+}
+
+.shoppingcart-productlisting-quantity {
+    width: 60px;
+    text-align: center;
+    border: 1px solid #c0c0c0;
+    margin-top: 10px; 
+    margin-right: 10px; 
+} 
+
+.shoppingcart-productlisting-remove {
+    background-color: #e95959;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) { 
+    .shoppingcart-titlerow, 
+    .shoppingcart-productlisting {
+        display: block; 
+    }
+
+    .shoppingcart-titlerow p, 
+    .shoppingcart-productlisting > * { 
+        margin-bottom: 10px; 
+    }
+}
+
+.shoppingcart-bottom {
+    border-top: 1px solid #e0e0e0;
+    margin-top: 30px;
+    padding-top: 40px;
+    padding-left: 25rem;
+    padding-right: 25rem;
+}
+
+.shoppingcart-total {
+    text-align: right;
+}
+
+.shoppingcart-total h1 {
+    font-weight: 600; 
+    margin-bottom: 20px; 
+} 
+
+.shoppingcart-subtotal,
+.shoppingcart-shipping,
+.shoppingcart-totalprice {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px; 
+}
+
+.shoppingcart-totalprice h3 { 
+    font-weight: 600;
+}
+
+.shoppingcart-total button {
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    padding: 18px 40px; 
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}

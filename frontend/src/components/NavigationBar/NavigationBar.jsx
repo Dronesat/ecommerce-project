@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './NavigationBar.css'; 
 import { Link, useNavigate } from 'react-router-dom'; 
+import { EcommerceContext } from '../../EcommerceContext/EcommerceContext';
 
 
 const NavigationBar = () => {
     const navigate = useNavigate();
+    const {calculateTotalProductInCart} = useContext(EcommerceContext);
 
   const handleAccountClick = () => {
     navigate('/account');
@@ -38,6 +40,7 @@ const NavigationBar = () => {
         <div className="navigation-account-cart"> 
             <button className="navigation-account" onClick={handleAccountClick}>Account</button> 
             <button className="navigation-cart" onClick={handleCartClick}>Cart</button> 
+            <p className='navigation-cart-count'>{calculateTotalProductInCart()}</p>
         </div>
     </nav>
   );

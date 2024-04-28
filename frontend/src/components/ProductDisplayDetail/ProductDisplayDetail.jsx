@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './ProductDisplayDetail.css'
 import rating_star_bright from '../../Assets/rating_star_bright.png'
 import rating_star_dark from '../../Assets/rating_star_dark.png'
+import { EcommerceContext } from '../../EcommerceContext/EcommerceContext'
 
 const ProductDisplayDetail = (props) => {
     const {product} = props;
-
+    const {addProductToCart} = useContext(EcommerceContext);
   return (
     <div className='productdisplaypage'>
         <div className='productdisplaypage-left'>
@@ -40,7 +41,9 @@ const ProductDisplayDetail = (props) => {
                 <button>XL</button>
             </div>
             <hr />
-            <button className='productdisplaypage-right-addcart'>ADD TO SHOPPING CART</button>
+            <button onClick={()=>{addProductToCart(product.product_id)}} className='productdisplaypage-right-addcart'>
+                ADD TO SHOPPING CART
+            </button>
         </div>
     </div>
   )

@@ -42,16 +42,26 @@ body {
     font-weight: 500;
   } 
   
-.navigation-account-cart {
-    display: flex; 
+  .navigation-account-cart {
+    display: flex;
+    align-items: center; 
 }
 
-.navigation-account-cart button{
-    margin-left: 20px; 
-    padding: 12px 20px; 
-    border: none;       
-    border-radius: 10px; 
-    background-color: #e0e0e0; 
+.navigation-account-cart button {
+    margin-left: 20px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #e0e0e0;
     cursor: pointer;
     font-size: 20px;
+}
+
+.navigation-cart-count { 
+    margin-left: 15px;
+    padding: 8px 12px;
+    border-radius: 50%; 
+    background-color: #e95959; 
+    color: white;
+    font-weight: 600; 
 }
