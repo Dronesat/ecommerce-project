@@ -19,7 +19,7 @@ const NavigationBar = () => {
   return (
     <nav className="navigationbar">
       <Link to="/home" className="navigationbar-title">
-          E-Commerce Website 
+          The E-Commerce Project
         </Link>
 
         <ul className="navigation-links">

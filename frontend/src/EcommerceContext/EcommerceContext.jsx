@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import productList from '../Assets/all_product';
+import productList from '../Assets/productList';
 
 //Create the context any initialise with null 
 export const EcommerceContext = createContext(null);

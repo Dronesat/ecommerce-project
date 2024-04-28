@@ -35,7 +35,7 @@ import p34_img from "./product_34.png";
 import p35_img from "./product_35.png";
 import p36_img from "./product_36.png";
 
-let all_product = [
+let productList = [
   {
     product_id: 1,
     product_name: "Classic V-Neck Blouse",
@@ -398,4 +398,4 @@ let all_product = [
   },
 ];
 
-export default all_product;
+export default productList;
