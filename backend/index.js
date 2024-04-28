@@ -6,8 +6,6 @@ const jsonwebtoken = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path"); //Access to backend directory in ExpressApp
 const cors = require("cors");
-const { log } = require("console");
-const { type } = require("os");
 
 //Import dotenv allow access to .env 
 require('dotenv').config();
@@ -16,7 +14,7 @@ app.use(express.json()); //All requests from response will auto pass through jso
 app.use(cors()); //Frontend(ReactJS) connects to backend(ExpressApp) on port 4000
 
 //MongoDB database connection string
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI); //store in .env to prevent exposing connection string on github
 
 //API Endpoint: Create Root
 app.get("/",(req,res)=>{
