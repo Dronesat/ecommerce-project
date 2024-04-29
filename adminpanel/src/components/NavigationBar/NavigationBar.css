@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.navigationbar-title {
+    font-size: 35px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #333;
+    font-weight: 600;
+}
+
+.navigationbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0; 
+    padding: 20px ;
+    background-color: #f5f5f5; 
+    padding: 25px 30px; 
+}
+  
+  
+.navigationbar-button {
+    display: flex;
+    align-items: center; 
+}
+
+.navigationbar-button button {
+    margin-left: 20px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    font-size: 20px;
+    background-color: #3498db;
+    color: white;
+    transition: background-color 0.3s ease; 
+}
+
+.navigationbar-button button:hover {
+    background-color: #2980b9;  
+}
+
+.navigationbar-addproduct {
+     background-color: #2ecc71; 
+}
+
