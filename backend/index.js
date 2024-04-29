@@ -10,6 +10,10 @@ const cors = require("cors");
 //Import dotenv allow access to .env 
 require('dotenv').config();
 
+//Import Models Schema 
+const Product = require('./modelsSchema/productSchema');
+const Customer = require('./modelsSchema/customerSchema');
+
 app.use(express.json()); //All requests from response will auto pass through json
 app.use(cors()); //Frontend(ReactJS) connects to backend(ExpressApp) on port 4000
 
@@ -45,45 +49,7 @@ app.post('/upload', imageUpload.single('product'), (req, res) => {
     res.json({ success: 1, image_url: imageUrl }); 
 });
 
-//Mongo Schema: Product
-const Product = mongoose.model("Product",{
-    product_id:{
-        type: Number,
-        required: true,
-    },
-    product_name:{
-        type: String,
-        required: true,
-    },
-    product_image:{
-        type: String,
-        required: true,
-    },
-    product_category:{
-        type: String,
-        required: true,
-    },
-    sale_price:{
-        type: Number,
-        required: true,
-    },
-    original_price:{
-        type: Number,
-        required: true,
-    },
-    product_trending:{
-        type: String,
-        required: true,
-    },
-    product_description:{
-        type: String,
-        required: true,
-    },
-    product_date:{
-        type: Date,
-        default: Date.now,
-    },
-})
+
 
 // API Endpoint: Add product to database using schema
 app.post('/addproduct', async (req, res) => {
@@ -148,6 +114,75 @@ app.get('/getallproducts', async (req, res) => {
     } catch (error) {
         console.error("Error retrieving products:", error);
         res.status(500).json({ error: "Failed to retrieve products" });
+    }
+});
+
+//API Endpoint: Customer Account Sign Up 
+app.post('/signup', async (req, res) => {
+    try {
+        // 1. Check for existing email
+        const existingCustomer = await Customer.findOne({ customer_email: req.body.customer_email });
+        if (existingCustomer) {
+            return res.status(400).json({ success: false, error: "Account already exists with this email" });
+        }
+
+        // 2. Create new customer with empty cart
+        const initialCart = {};
+        for (let i = 0; i < 300; i++) {
+            initialCart[i] = 0;
+        }
+
+        const newCustomer = new Customer({
+            customer_name: req.body.customer_name,
+            customer_email: req.body.customer_email,
+            customer_password: req.body.customer_password, 
+            customer_cartData: initialCart,
+        });
+        await newCustomer.save();
+
+        // 3. JWT Authentication
+        const customerDataForToken = {
+            customer: {
+                id: newCustomer.customer_id 
+            }
+        };
+        const token = jsonwebtoken.sign(customerDataForToken, process.env.JWT_TOKEN_KEY);
+        res.json({ success: true, token });
+    } catch (error) {
+        console.error("Error creating account:", error);
+        res.status(500).json({ success: false, error: "Error creating account" });
+    }
+});
+
+//API Endpoint: Customer login to account
+app.post('/login', async (req, res) => {
+    try {
+        // 1.Find the customer based on provided email
+        let customer = await Customer.findOne({ customer_email: req.body.customer_email });
+
+        // 2. If a customer is found, proceed with password check
+        if (customer) {
+            const isPasswordValid = req.body.customer_password === customer.customer_password;
+            // 3. If password is valid, create a JWT token 
+            if (isPasswordValid) {
+                const tokenPayload = {
+                    customer: {
+                        id: customer.customer_id
+                    }
+                };
+                const signedToken = jsonwebtoken.sign(tokenPayload, process.env.JWT_TOKEN_KEY);
+                res.json({ success: true, signedToken });
+
+            } else { 
+                res.json({ success: false, errors: "Wrong Password" });
+            }
+        } else {
+            res.json({ success: false, errors: "Wrong Email Address" });
+        }
+
+    } catch (error) { 
+        console.error("Error during login process:", error); 
+        res.status(500).json({ success: false, errors: "Error during login process" });
     }
 });
 

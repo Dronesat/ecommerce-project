@@ -4,8 +4,8 @@ body {
 }
 
 .listproduct {
-    max-width: 1200px; /* Limit container width for readability */
-    margin: 30px auto; /* Center content */
+    max-width: 1200px; 
+    margin: 30px auto; 
     padding: 20px;
     background-color: #fff;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
@@ -15,11 +15,10 @@ body {
     text-align: center;
 }
 
-/* Table Styling */
 .listproduct-titlerow, 
 .listproduct-main { 
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr; /* Adjust column widths as needed */
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr; 
     border-bottom: 1px solid #ddd; 
     padding: 10px 0;
 }
@@ -40,12 +39,11 @@ body {
 .listproduct-image {
     max-width: 80px;
     max-height: 80px;
-    object-fit: contain; /* Prevent image distortion */
+    object-fit: contain; 
 }
 
-/* Button Styling */
 .listproduct button {
-    background-color: #e74c3c; /* Example red color */
+    background-color: #e74c3c; 
     color: white;
     border: none;
     padding: 8px 15px;
@@ -53,11 +51,9 @@ body {
     cursor: pointer;
 }
 
-/* Optional - Responsive Adjustments */
 @media (max-width: 768px) {
     .listproduct-titlerow, 
     .listproduct-main { 
-        display: block; /* Stack elements vertically on smaller screens */
+        display: block;
     }
-    /* Adjust column widths if needed */
 } 
