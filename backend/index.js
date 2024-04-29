@@ -21,32 +21,28 @@ app.get("/",(req,res)=>{
     res.send("Express Web Server is running")
 })
 
-//Middleware
-//Configures disk storage for uploaded images and generates unique filenames
-const configureImageUpload = () => {
-    const imageStorage = multer.diskStorage({
-        destination: './upload/images',
-        filename: (req, file, callback) => {
-            const timestamp = Date.now();
-            const originalExtension = path.extname(file.originalname);
-            const newFilename = `${file.fieldname}_${timestamp}${originalExtension}`;
-            callback(null, newFilename); 
-        }
-    });
-
-    return multer({ storage: imageStorage });
-}
-
-const imageUploadMiddleware = configureImageUpload();
+//Middleware: Configures disk storage for uploaded images and generates unique filenames
+const imageStorage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, './upload/images'); // Store images in './upload/images'
+    },
+    filename: function(req, file, callback) {
+        const uniqueSuffix = Date.now(); // Timestamp for uniqueness
+        const originalExtension = path.extname(file.originalname);
+        const newFilename = `${file.fieldname}_${uniqueSuffix}${originalExtension}`;
+        callback(null, newFilename); 
+    }
+});
+const imageUpload = multer({ storage: imageStorage });
 
 //API Endpoints: Upload images
-app.use('/images', express.static('upload/images')); 
-
-app.post("/uploadimage", imageUploadMiddleware.single('product'), (req, res) => {
-    res.json({
-        success: 1,
-        imageUrl: `http://localhost:${portNumber}/images/${req.file.filename}`
-    });
+app.use('/images', express.static('upload/images')); // Serve images from the upload directory
+app.post('/upload', imageUpload.single('product'), (req, res) => {
+    if (!req.file) { 
+        return res.status(400).json({ error: 'Please upload an image' });
+    }
+    const imageUrl = `http://localhost:${portNumber}/images/${req.file.filename}`;
+    res.json({ success: 1, image_url: imageUrl }); 
 });
 
 //Mongo Schema: Product
@@ -76,11 +72,7 @@ const Product = mongoose.model("Product",{
         required: true,
     },
     product_trending:{
-        type: Boolean,
-        required: true,
-    },
-    product_availability:{
-        type: Boolean,
+        type: String,
         required: true,
     },
     product_description:{
@@ -93,60 +85,80 @@ const Product = mongoose.model("Product",{
     },
 })
 
-//API Endpoint: Add product to database using schema
-app.post('/addproduct', async(req,res) => {
-    let products = await Product.find({});
-    let product_id;
-    //Auto increment product id
-    if (products.length > 0){
-        let last_product_array = products.slice(-1);
-        let last_product = last_product_array[0];
-        product_id = last_product.product_id+1;
-    } else { //No product in db
-        product_id = 1;
-    }
-    const product = new Product({
-        product_id:product_id,
-        product_name:req.body.product_name,
-        product_image:req.body.product_image,
-        product_category:req.body.product_category,
-        sale_price:req.body.sale_price,
-        original_price:req.body.original_price,
-        product_trending:req.body.product_trending,
-        product_availability:req.body.product_availability,
-        product_description:req.body.product_description,
-    });
-    console.log(product);
-    await product.save();
-    console.log("Product saved to database");
-    res.json({
-        success: true,
-        product_name:req.body.product_name,
-    })
-})
+// API Endpoint: Add product to database using schema
+app.post('/addproduct', async (req, res) => {
+    try {
+        const existingProducts = await Product.find({});
+        let nextProductId;
+        if (existingProducts.length > 0) {
+            const lastProduct = existingProducts[existingProducts.length - 1];
+            nextProductId = lastProduct.product_id + 1;
+        } else {
+            nextProductId = 1;
+        }
 
-//API Endpoint: Remove product from database
-app.post('/removeproduct',async(req,res)=>{
-    await Product.findOneAndDelete({product_id:req.body.product_id});
-    console.log("Product Removed");
-    res.json({
-        success:true,
-        product_name:req.body.product_name,
-    })
-})
+        const newProduct = new Product({
+            product_id: nextProductId,
+            product_name: req.body.product_name,
+            product_image: req.body.product_image,
+            product_category: req.body.product_category,
+            sale_price: req.body.sale_price,
+            original_price: req.body.original_price,
+            product_trending: req.body.product_trending,
+            product_description: req.body.product_description,
+        });
 
-//API Endpoint: Retreive all products from database
-app.get('/getallproducts',async (req,res)=>{
-    let products = await Product.find({});
-    console.log("Retreived all products from database");
-    res.send(products);
-})
+        console.log(newProduct);
+        await newProduct.save();
+        console.log("Product saved to database");
 
-//Start server on specified port and provide errors 
-app.listen(portNumber,(error)=>{
-    if(!error) {
-        console.log("Express Web Server is running on port: " + portNumber)
-    } else {
-        console.log("Error: " + error)
+        res.json({
+            success: true,
+            product_name: req.body.product_name,
+        });
+
+    } catch (error) {
+        console.error("Error saving product:", error); 
+        res.status(500).json({ error: "Failed to save product" }); 
     }
 });
+
+// API Endpoint: Remove product from database
+app.post('/removeproduct', async (req, res) => {
+    try {
+        await Product.findOneAndDelete({ product_id: req.body.product_id });
+        console.log("Product Removed"); 
+        res.json({
+            success: true,
+            deletedProductName: req.body.product_name 
+        });
+
+    } catch (error) {
+        console.error("Error deleting product:", error);
+        res.status(500).json({ error: "Failed to delete product" }); 
+    }
+});
+
+// API Endpoint: Retrieve all products from database
+app.get('/getallproducts', async (req, res) => {
+    try{
+        const allProducts = await Product.find({});
+        console.log("Retrieved all products from database");
+        res.send(allProducts);
+    } catch (error) {
+        console.error("Error retrieving products:", error);
+        res.status(500).json({ error: "Failed to retrieve products" });
+    }
+});
+
+const startServer = () => {
+    app.listen(portNumber, (error) => {
+        if (error) {
+            console.error("Error starting server:", error);
+        } else {
+            console.log("Express Web Server is running on port: " + portNumber); 
+        }
+    });
+}
+// Call the function to start the server
+startServer();
