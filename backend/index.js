@@ -43,7 +43,7 @@ const imageUpload = multer({ storage: imageStorage });
 app.use('/images', express.static('upload/images')); // Serve images from the upload directory
 app.post('/upload', imageUpload.single('product'), (req, res) => {
     if (!req.file) { 
-        return res.status(400).json({ error: 'Please upload an image' });
+        return res.status(400).json({ errors: 'Please upload an image' });
     }
     const imageUrl = `http://localhost:${portNumber}/images/${req.file.filename}`;
     res.json({ success: 1, image_url: imageUrl }); 
@@ -123,7 +123,7 @@ app.post('/signup', async (req, res) => {
         // 1. Check for existing email
         const existingCustomer = await Customer.findOne({ customer_email: req.body.customer_email });
         if (existingCustomer) {
-            return res.status(400).json({ success: false, error: "Account already exists with this email" });
+            return res.status(400).json({ success: false, errors: "Account already exists with this email" });
         }
 
         // 2. Create new customer with empty cart
@@ -157,32 +157,34 @@ app.post('/signup', async (req, res) => {
 //API Endpoint: Customer login to account
 app.post('/login', async (req, res) => {
     try {
-        // 1.Find the customer based on provided email
-        let customer = await Customer.findOne({ customer_email: req.body.customer_email });
+        // Attempt to find the user by email
+        const existingUser = await Customer.findOne({ customer_email: req.body.customer_email });
 
-        // 2. If a customer is found, proceed with password check
-        if (customer) {
-            const isPasswordValid = req.body.customer_password === customer.customer_password;
-            // 3. If password is valid, create a JWT token 
-            if (isPasswordValid) {
+        if (existingUser) {
+            // Compare provided password with stored password
+            const isPasswordMatch = req.body.customer_password === existingUser.customer_password;
+
+            if (isPasswordMatch) {
+                // Create payload for the JWT token
                 const tokenPayload = {
-                    customer: {
-                        id: customer.customer_id
+                    user: {
+                        id: existingUser.id 
                     }
                 };
-                const signedToken = jsonwebtoken.sign(tokenPayload, process.env.JWT_TOKEN_KEY);
-                res.json({ success: true, signedToken });
 
-            } else { 
+                // Generate the JWT token
+                const token = jsonwebtoken.sign(tokenPayload, process.env.JWT_TOKEN_KEY);
+
+                res.json({ success: true, token }); 
+            } else {
                 res.json({ success: false, errors: "Wrong Password" });
             }
         } else {
             res.json({ success: false, errors: "Wrong Email Address" });
         }
-
-    } catch (error) { 
-        console.error("Error during login process:", error); 
-        res.status(500).json({ success: false, errors: "Error during login process" });
+    } catch (error) {
+        console.error("Error during login:", error);
+        res.status(500).json({ success: false, errors: "Error during login" });
     }
 });
 

@@ -16,6 +16,19 @@ const NavigationBar = () => {
     navigate('/cart');
   };
 
+  const isLoggedIn = localStorage.getItem('auth-token') !== null;
+  function handleAuthClick() {
+    if (localStorage.getItem('auth-token') !== null) {
+      // User is logged in
+      localStorage.removeItem('auth-token');
+      window.location.replace('/home'); 
+      alert("Logged Out");
+    } else {
+      // User is not logged in
+      handleAccountClick(); 
+    }
+  }
+
   return (
     <nav className="navigationbar">
       <Link to="/home" className="navigationbar-title">
@@ -38,7 +51,9 @@ const NavigationBar = () => {
         </ul>
 
         <div className="navigation-account-cart"> 
-            <button className="navigation-account" onClick={handleAccountClick}>Account</button> 
+            <button onClick={handleAuthClick}>
+              {isLoggedIn ? 'Account Logout' : 'Account Login'} 
+            </button>
             <button className="navigation-cart" onClick={handleCartClick}>Cart</button> 
             <p className='navigation-cart-count'>{calculateTotalProductInCart()}</p>
         </div>

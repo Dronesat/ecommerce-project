@@ -1,3 +1,4 @@
+//MongoDB Schema: Product
 const mongoose = require('mongoose');
 
 const ProductSchema = new mongoose.Schema({
