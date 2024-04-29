@@ -35,12 +35,51 @@ import p34_img from "./product_34.png";
 import p35_img from "./product_35.png";
 import p36_img from "./product_36.png";
 
+import women1 from "./women/women1.jpg"
+import women2 from "./women/women2.jpg"
+import women3 from "./women/women3.jpg"
+import women4 from "./women/women4.jpg"
+import women5 from "./women/women5.jpg"
+import women6 from "./women/women6.jpg"
+import women7 from "./women/women7.jpg"
+import women8 from "./women/women8.jpg"
+import women9 from "./women/women9.jpg"
+import women10 from "./women/women10.jpg"
+import women11 from "./women/women11.jpg"
+import women12 from "./women/women12.jpg"
+
+import men1 from "./men/men1.jpg"
+import men2 from "./men/men2.jpg"
+import men3 from "./men/men3.jpg"
+import men4 from "./men/men4.jpg"
+import men5 from "./men/men5.jpg"
+import men6 from "./men/men6.jpg"
+import men7 from "./men/men7.jpg"
+import men8 from "./men/men8.jpg"
+import men9 from "./men/men9.jpg"
+import men10 from "./men/men10.jpg"
+import men11 from "./men/men11.jpg"
+import men12 from "./men/men12.jpg"
+
+import kid1 from "./kid/kid1.jpg"
+import kid2 from "./kid/kid2.jpg"
+import kid3 from "./kid/kid3.jpg"
+import kid4 from "./kid/kid4.jpg"
+import kid5 from "./kid/kid5.jpg"
+import kid6 from "./kid/kid6.jpg"
+import kid7 from "./kid/kid7.jpg"
+import kid8 from "./kid/kid8.jpg"
+import kid9 from "./kid/kid9.jpg"
+import kid10 from "./kid/kid10.jpg"
+import kid11 from "./kid/kid11.jpg"
+import kid12 from "./kid/kid12.jpg"
+
 let productList = [
   {
     product_id: 1,
     product_name: "Classic V-Neck Blouse",
     product_category: "women",
-    product_image: p1_img,
+    product_image: women1,
     sale_price: 29.99,
     original_price: 45,
     product_trending: false,
@@ -50,7 +89,7 @@ let productList = [
     product_id: 2,
     product_name: "Floral Wrap Dress",
     product_category: "women",
-    product_image: p2_img,
+    product_image: women2,
     sale_price: 29.99,
     original_price: 42.5,
     product_trending: false,
@@ -60,7 +99,7 @@ let productList = [
     product_id: 3,
     product_name: "Denim Boyfriend Jacket",
     product_category: "women",
-    product_image: p3_img,
+    product_image: women3,
     sale_price: 15.5,
     original_price: 30.5,
     product_trending: false,
@@ -70,7 +109,7 @@ let productList = [
     product_id: 4,
     product_name: "Cable Knit Sweater",
     product_category: "women",
-    product_image: p4_img,
+    product_image: women4,
     sale_price: 22.5,
     original_price: 30.5,
     product_trending: false,
@@ -80,7 +119,7 @@ let productList = [
     product_id: 5,
     product_name: "Tailored Midi Skirt",
     product_category: "women",
-    product_image: p5_img,
+    product_image: women5,
     sale_price: 5.99,
     original_price: 12.99,
     product_trending: false,
@@ -90,7 +129,7 @@ let productList = [
     product_id: 6,
     product_name: "Satin Slip Dress",
     product_category: "women",
-    product_image: p6_img,
+    product_image: women6,
     sale_price: 85.0,
     original_price: 120.5,
     product_trending: false,
@@ -100,7 +139,7 @@ let productList = [
     product_id: 7,
     product_name: "Faux Leather Leggings",
     product_category: "women",
-    product_image: p7_img,
+    product_image: women7,
     sale_price: 23.6,
     original_price: 60,
     product_trending: false,
@@ -110,7 +149,7 @@ let productList = [
     product_id: 8,
     product_name: "Cozy Cashmere Scarf",
     product_category: "women",
-    product_image: p8_img,
+    product_image: women8,
     sale_price: 10.99,
     original_price: 31,
     product_trending: false,
@@ -120,7 +159,7 @@ let productList = [
     product_id: 9,
     product_name: "Structured Tote Bag",
     product_category: "women",
-    product_image: p9_img,
+    product_image: women9,
     sale_price: 30,
     original_price: 50.99,
     product_trending: true,
@@ -130,7 +169,7 @@ let productList = [
     product_id: 10,
     product_name: "Statement Earrings",
     product_category: "women",
-    product_image: p10_img,
+    product_image: women10,
     sale_price: 21.5,
     original_price: 32.99,
     product_trending: true,
@@ -140,7 +179,7 @@ let productList = [
     product_id: 11,
     product_name: "Minimalist Pendant Necklace",
     product_category: "women",
-    product_image: p11_img,
+    product_image: women11,
     sale_price: 50,
     original_price: 32.99,
     product_trending: true,
@@ -150,7 +189,7 @@ let productList = [
     product_id: 12,
     product_name: "Block Heel Ankle Boots",
     product_category: "women",
-    product_image: p12_img,
+    product_image: women12,
     sale_price: 10.99,
     original_price: 20.99,
     product_trending: true,
@@ -160,7 +199,7 @@ let productList = [
     product_id: 13,
     product_name: "Crisp White Oxford Shirt",
     product_category: "men",
-    product_image: p13_img,
+    product_image: men1,
     sale_price: 21,
     original_price: 25,
     product_trending: false,
@@ -170,7 +209,7 @@ let productList = [
     product_id: 14,
     product_name: "Slim Fit Chinos (multiple colors)",
     product_category: "men",
-    product_image: p14_img,
+    product_image: men2,
     sale_price: 31,
     original_price: 60,
     product_trending: false,
@@ -180,7 +219,7 @@ let productList = [
     product_id: 15,
     product_name: "Wool Blend Blazer",
     product_category: "men",
-    product_image: p15_img,
+    product_image: men3,
     sale_price: 21,
     original_price: 31,
     product_trending: false,
@@ -190,7 +229,7 @@ let productList = [
     product_id: 16,
     product_name: "Henley T-Shirt",
     product_category: "men",
-    product_image: p16_img,
+    product_image: men4,
     sale_price: 33,
     original_price: 55.99,
     product_trending: false,
@@ -200,7 +239,7 @@ let productList = [
     product_id: 17,
     product_name: "Vintage Wash Jeans",
     product_category: "men",
-    product_image: p17_img,
+    product_image: men5,
     sale_price: 10,
     original_price: 20.99,
     product_trending: false,
@@ -210,7 +249,7 @@ let productList = [
     product_id: 18,
     product_name: "Waterproof Hiking Boots",
     product_category: "men",
-    product_image: p18_img,
+    product_image: men6,
     sale_price: 50,
     original_price: 100.5,
     product_trending: false,
@@ -220,7 +259,7 @@ let productList = [
     product_id: 19,
     product_name: "Canvas Weekender Bag",
     product_category: "men",
-    product_image: p19_img,
+    product_image: men7,
     sale_price: 85.0,
     original_price: 120.5,
     product_trending: false,
@@ -230,7 +269,7 @@ let productList = [
     product_id: 20,
     product_name: "Aviator Sunglasses",
     product_category: "men",
-    product_image: p20_img,
+    product_image: men8,
     sale_price: 40,
     original_price: 80,
     product_trending: false,
@@ -240,7 +279,7 @@ let productList = [
     product_id: 21,
     product_name: "Leather Dress Belt",
     product_category: "men",
-    product_image: p21_img,
+    product_image: men9,
     sale_price: 21.99,
     original_price: 51,
     product_trending: true,
@@ -250,7 +289,7 @@ let productList = [
     product_id: 22,
     product_name: "Minimalist Watch",
     product_category: "men",
-    product_image: p22_img,
+    product_image: men10,
     sale_price: 21.99,
     original_price:51.89,
     product_trending: true,
@@ -260,7 +299,7 @@ let productList = [
     product_id: 23,
     product_name: "Oxford Dress Shoes",
     product_category: "men",
-    product_image: p23_img,
+    product_image: men11,
     sale_price: 20,
     original_price: 40,
     product_trending: true,
@@ -270,7 +309,7 @@ let productList = [
     product_id: 24,
     product_name: "Suede Chelsea Boots",
     product_category: "men",
-    product_image: p24_img,
+    product_image: men12,
     sale_price: 45,
     original_price: 55,
     product_trending: true,
@@ -280,7 +319,7 @@ let productList = [
     product_id: 25,
     product_name: "Dinosaur Graphic Tee",
     product_category: "kid",
-    product_image: p25_img,
+    product_image: kid1,
     sale_price: 5.99,
     original_price: 19.99,
     product_trending: false,
@@ -290,7 +329,7 @@ let productList = [
     product_id: 26,
     product_name: "Rainbow Unicorn Hoodie",
     product_category: "kid",
-    product_image: p26_img,
+    product_image: kid2,
     sale_price: 30,
     original_price: 50,
     product_trending: false,
@@ -300,7 +339,7 @@ let productList = [
     product_id: 27,
     product_name: "Colorblock Sweatpants",
     product_category: "kid",
-    product_image: p27_img,
+    product_image: kid3,
     sale_price: 12,
     original_price: 24,
     product_trending: false,
@@ -310,7 +349,7 @@ let productList = [
     product_id: 28,
     product_name: "Striped Denim Overalls",
     product_category: "kid",
-    product_image: p28_img,
+    product_image: kid4,
     sale_price: 31,
     original_price: 50.99,
     product_trending: false,
@@ -320,7 +359,7 @@ let productList = [
     product_id: 29,
     product_name: "Waterproof Rain Jacket",
     product_category: "kid",
-    product_image: p29_img,
+    product_image: kid5,
     sale_price: 11,
     original_price: 25.99,
     product_trending: false,
@@ -330,7 +369,7 @@ let productList = [
     product_id: 30,
     product_name: "High Top Sneakers",
     product_category: "kid",
-    product_image: p30_img,
+    product_image: kid6,
     sale_price: 15,
     original_price: 20.99,
     product_trending: false,
@@ -340,7 +379,7 @@ let productList = [
     product_id: 31,
     product_name: "Animal Print Backpack",
     product_category: "kid",
-    product_image: p31_img,
+    product_image: kid7,
     sale_price: 9.99,
     original_price: 15.99,
     product_trending: false,
@@ -350,7 +389,7 @@ let productList = [
     product_id: 32,
     product_name: "Soft Fleece Beanie",
     product_category: "kid",
-    product_image: p32_img,
+    product_image: kid8,
     sale_price: 10,
     original_price: 12,
     product_trending: false,
@@ -360,7 +399,7 @@ let productList = [
     product_id: 33,
     product_name: "Patterned Pajama Set",
     product_category: "kid",
-    product_image: p33_img,
+    product_image: kid9,
     sale_price: 20,
     original_price: 25,
     product_trending: true,
@@ -370,7 +409,7 @@ let productList = [
     product_id: 34,
     product_name: "Superhero Cape",
     product_category: "kid",
-    product_image: p34_img,
+    product_image: kid10,
     sale_price: 16,
     original_price: 31,
     product_trending: true,
@@ -380,7 +419,7 @@ let productList = [
     product_id: 35,
     product_name: "Building Blocks Set",
     product_category: "kid",
-    product_image: p35_img,
+    product_image: kid11,
     sale_price: 8.99,
     original_price: 20,
     product_trending: true,
@@ -390,7 +429,7 @@ let productList = [
     product_id: 36,
     product_name: "Dinosaur Stuffed Animal",
     product_category: "kid",
-    product_image: p36_img,
+    product_image: kid12,
     sale_price: 13,
     original_price: 25,
     product_trending: true,

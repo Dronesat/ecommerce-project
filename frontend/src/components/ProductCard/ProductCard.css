@@ -29,3 +29,7 @@
     transform: scale(1.10);
     border-color: #374151;
 }
+.product img{
+    max-height: 100%;
+    max-width: 100%;
+}
