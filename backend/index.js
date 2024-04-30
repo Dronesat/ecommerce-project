@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const jsonwebtoken = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path"); //Access to backend directory in ExpressApp
-const cors = require("cors");
+const cors = require("cors"); //Provide access to ReactProject
 
 //Import dotenv allow access to .env 
 require('dotenv').config();
@@ -142,7 +142,6 @@ app.post('/signup', async (req, res) => {
         for (let i = 0; i < 300; i++) {
             initialCart[i] = 0;
         }
-
         const newCustomer = new Customer({
             customer_name: req.body.customer_name,
             customer_email: req.body.customer_email,
@@ -154,7 +153,7 @@ app.post('/signup', async (req, res) => {
         //3. JWT Authentication
         const customerDataForToken = {
             user: {
-                id: newCustomer.customer_id 
+                id: newCustomer.id
             }
         };
         const token = jsonwebtoken.sign(customerDataForToken, process.env.JWT_TOKEN_KEY);
@@ -185,7 +184,6 @@ app.post('/login', async (req, res) => {
 
                 // Generate the JWT token
                 const token = jsonwebtoken.sign(tokenPayload, process.env.JWT_TOKEN_KEY);
-
                 res.json({ success: true, token }); 
             } else {
                 res.json({ success: false, errors: "Wrong Password" });

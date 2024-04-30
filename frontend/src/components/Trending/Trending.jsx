@@ -24,7 +24,6 @@ const Trending = (props) => {
               } else {
                 return null;
               }
-                
             })}
         </div>
     </div>

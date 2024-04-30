@@ -22,81 +22,100 @@ const EcommerceContextProvider = (props) => {
     const [shoppingCart,setshoppingCart] = useState(initialiseEmptyCart());
     const [productList,setProductList] = useState([]);
 
-    useEffect(()=>{
-        fetch('http://localhost:4000/getproductlist')
-        .then((response)=>response.json())
-        .then((data)=>setProductList(data))
-
-        if(localStorage.getItem('auth-token')){
-            fetch('http://localhost:4000/getallproductsfromcart',{
-                method:'POST',
-                headers:{
-                    Accept:'application/form-data',
-                    'auth-token': `${localStorage.getItem('auth-token')}`,  
-                    'Content-Type': 'application/json',
-                },
-                body:"",
-            })
-            .then((response)=>response.json())
-            .then((productCartData)=>setshoppingCart(productCartData))
-        }
-    },[])
-
-    //Function add product to cart
-    const addProductToCart = (productID) => {
-        setshoppingCart((previousCart) => {
-            const newCart = { ...previousCart }; // Create a copy of the cart
-            // Increment existing item or initialise if new
-            if (newCart[productID]) {
-                newCart[productID] += 1; 
-            } else {
-                newCart[productID] = 1; 
+    useEffect(() => {
+        // Function to fetch product list from the backend
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('http://localhost:4000/getproductlist');
+                const data = await response.json();
+                setProductList(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                // Handle the error appropriately (e.g., display an error message)
             }
-            return newCart;
-        });
-        //Check if customer is logged in?
+        };
+        // Function to fetch shopping cart data if the user is logged in
+        const fetchCartData = async () => {
+            try {
+                const authToken = localStorage.getItem('auth-token');
+                if (!authToken) return; //exit if no auth token is found
+    
+                const response = await fetch('http://localhost:4000/getallproductsfromcart', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/form-data',
+                        'auth-token': authToken,
+                        'Content-Type': 'application/json',
+                    },
+                    body: "", 
+                });
+    
+                const productCartData = await response.json();
+                setshoppingCart(productCartData);
+            } catch (error) {
+                console.error('Error fetching cart data:', error);
+            }
+        };
+        //Fetch products 
+        fetchProducts(); 
+        //Fetch cart data only if the user has an auth token
         if (localStorage.getItem('auth-token')) {
-            fetch('http://localhost:4000/addproducttocart',{
-                method:'POST',
-                headers:{
-                    Accept: 'application/form-data',
-                    'auth-token': `${localStorage.getItem('auth-token')}`,  
-                    'Content-Type': 'application/json',
-                },
-                body:JSON.stringify({"productId":productID}),
-            })
-            .then((response)=>response.json())
-            .then((productData)=>console.log(productData));
+            fetchCartData(); 
         }
-    }
+    }, []); 
+    
+    //Helper function: Modifies the quantity of a product in the cart 
+    //or initialises it if new
+    const updateCartQuantity = (cartState, productId, modifier) => {
+        const updatedCart = { ...cartState };
+        updatedCart[productId] = Math.max(updatedCart[productId] || 0, 0) + modifier;
 
-    //Function remove product from cart
-    const removeProductFromCart = (productID) => {
-        setshoppingCart((previousCart) => {
-            const updatedCart = { ...previousCart }; // Create a copy of the cart
-            // Decrement item quantity
-            updatedCart[productID] = Math.max(updatedCart[productID] - 1, 0);
-            // Optionally remove items with 0 quantity
-            if (updatedCart[productID] === 0) {
-                delete updatedCart[productID]; 
-            } 
-            return updatedCart;
-        });
-        //Check if customer is logged in?
+        if (updatedCart[productId] === 0) {
+            delete updatedCart[productId];
+        }
+        return updatedCart;
+    };
+
+    //Function Add product to cart
+    const addProductToCart = (productId) => {
+        setshoppingCart((currentCart) => updateCartQuantity(currentCart, productId, 1));
+
         if (localStorage.getItem('auth-token')) {
-            fetch('http://localhost:4000/removeproductfromcart',{
-                method:'POST',
-                headers:{
+            updateServerCart(productId, 'addproducttocart');
+        }
+    };
+    //Function Remove product from cart
+    const removeProductFromCart = (productId) => {
+        setshoppingCart((currentCart) => updateCartQuantity(currentCart, productId, -1));
+
+        if (localStorage.getItem('auth-token')) {
+            updateServerCart(productId, 'removeproductfromcart');
+        }
+    };
+
+    //Update cart on server via endpoint (/add... or /remove...)
+    const updateServerCart = async (productId, action) => {
+        try {
+            const authToken = localStorage.getItem('auth-token');
+            // Ensure there's a token before making the request 
+            if (!authToken) return;
+
+            const response = await fetch(`http://localhost:4000/${action}`, {
+                method: 'POST',
+                headers: {
                     Accept: 'application/form-data',
-                    'auth-token': `${localStorage.getItem('auth-token')}`,  
+                    'auth-token': authToken,
                     'Content-Type': 'application/json',
                 },
-                body:JSON.stringify({"productId":productID}),
-            })
-            .then((response)=>response.json())
-            .then((productData)=>console.log(productData));
+                body: JSON.stringify({ productId }), 
+            });
+
+            const productData = await response.json();
+            console.log(productData);
+        } catch (error) {
+            console.error(`Error updating server cart (${action})`, error);
         }
-    }
+    };
 
     //Function calculate total prices for shopping cart
     const calculateCartTotal = () => {

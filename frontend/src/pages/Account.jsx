@@ -34,7 +34,7 @@ const Account = () => {
             // Parse the JSON response from the server
             const registrationData = await response.json(); 
     
-            // If registration was successful:
+            // If registration was successful
             if (registrationData.success) {
                 // Store the authentication token in local storage 
                 localStorage.setItem('auth-token', registrationData.token);
@@ -66,7 +66,7 @@ const Account = () => {
             // Parse the JSON response from the server
             const registrationData = await response.json(); 
     
-            // If registration was successful:
+            // If registration was successful
             if (registrationData.success) {
                 // Store the authentication token in local storage 
                 localStorage.setItem('auth-token', registrationData.token);

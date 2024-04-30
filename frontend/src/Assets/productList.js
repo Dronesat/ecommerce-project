@@ -46,7 +46,7 @@ let productList = [
     sale_price: 29.99,
     original_price: 45,
     product_trending: false,
-    product_description: "A timeless wardrobe staple. This soft and flowy blouse features a flattering V-neckline and comes in a variety of essential colors.",
+    product_description: "A timeless wardrobe staple. This soft and flowy blouse features a flattering V-neckline and comes in a variety of essential colors",
   },
   {
     product_id: 2,
@@ -66,7 +66,7 @@ let productList = [
     sale_price: 15.5,
     original_price: 30.5,
     product_trending: false,
-    product_description: "The perfect blend of comfort and cool. This relaxed-fit denim jacket features a slightly faded wash for a vintage-inspired look.",
+    product_description: "The perfect blend of comfort and cool. This relaxed-fit denim jacket features a slightly faded wash for a vintage-inspired look",
   },
   {
     product_id: 4,
@@ -76,7 +76,7 @@ let productList = [
     sale_price: 22.5,
     original_price: 30.5,
     product_trending: false,
-    product_description: "Cozy up in timeless style with this classic cable knit sweater. Made from soft wool-blend yarn for ultimate warmth.",
+    product_description: "Cozy up in timeless style with this classic cable knit sweater. Made from soft wool-blend yarn for ultimate warmth",
   },
   {
     product_id: 5,
@@ -96,7 +96,7 @@ let productList = [
     sale_price: 85.0,
     original_price: 120.5,
     product_trending: false,
-    product_description: "Slip into luxury with this silky-smooth satin dress. The adjustable straps and flowing design ensure a perfect fit.",
+    product_description: "Slip into luxury with this silky-smooth satin dress. The adjustable straps and flowing design ensure a perfect fit",
   },
   {
     product_id: 7,
@@ -106,7 +106,7 @@ let productList = [
     sale_price: 23.6,
     original_price: 60,
     product_trending: false,
-    product_description: "Add a touch of edge to your wardrobe with these sleek faux-leather leggings. Comfortable stretch fabric and a flattering fit.",
+    product_description: "Add a touch of edge to your wardrobe with these sleek faux-leather leggings. Comfortable stretch fabric and a flattering fit",
   },
   {
     product_id: 8,
@@ -116,7 +116,7 @@ let productList = [
     sale_price: 10.99,
     original_price: 31,
     product_trending: false,
-    product_description: "Wrap yourself in warmth with this luxurious cashmere scarf. Incredibly soft and perfect for chilly days.",
+    product_description: "Wrap yourself in warmth with this luxurious cashmere scarf. Incredibly soft and perfect for chilly days",
   },
   {
     product_id: 9,
@@ -126,7 +126,7 @@ let productList = [
     sale_price: 30,
     original_price: 50.99,
     product_trending: true,
-    product_description: "Spacious and sophisticated, this tote bag is crafted from durable faux leather and boasts ample compartments for all your essentials.",
+    product_description: "Spacious and sophisticated, this tote bag is crafted from durable faux leather and boasts ample compartments for all your essentials",
   },
   {
     product_id: 10,
@@ -143,8 +143,8 @@ let productList = [
     product_name: "Minimalist Pendant Necklace",
     product_category: "women",
     product_image: women11,
-    sale_price: 50,
-    original_price: 32.99,
+    original_price: 50,
+    sale_price: 32.99,
     product_trending: true,
     product_description: "Everyday elegance. This delicate pendant necklace features a timeless design and a subtle sparkle.",
   },

@@ -1,14 +1,14 @@
-import p8_img from './product_8.png'
-import p20_img from './product_20.png'
-import p7_img from './product_7.png'
-import p32_img from './product_32.png'
+import image1 from './similar_img/similar1.png'
+import image2 from './similar_img/similar2.png'
+import image3 from './similar_img/similar3.png'
+import image4 from './similar_img/similar4.png'
 
 let similar_products = [
   {
     product_id: 8,
     product_name: "Cozy Cashmere Scarf",
     product_category: "women",
-    product_image: p8_img,
+    product_image: image1,
     sale_price: 10.99,
     original_price: 31,
     product_trending: false,
@@ -18,7 +18,7 @@ let similar_products = [
     product_id: 20,
     product_name: "Aviator Sunglasses",
     product_category: "men",
-    product_image: p20_img,
+    product_image: image4,
     sale_price: 40,
     original_price: 80,
     product_trending: false,
@@ -28,7 +28,7 @@ let similar_products = [
     product_id: 7,
     product_name: "Faux Leather Leggings",
     product_category: "women",
-    product_image: p7_img,
+    product_image: image2,
     sale_price: 23.6,
     original_price: 60,
     product_trending: false,
@@ -38,7 +38,7 @@ let similar_products = [
     product_id: 32,
     product_name: "Soft Fleece Beanie",
     product_category: "kid",
-    product_image: p32_img,
+    product_image: image3,
     sale_price: 10,
     original_price: 12,
     product_trending: false,
