@@ -232,18 +232,12 @@ app.post('/addproducttocart', fetchCustomer, async (req, res) => {
             { $inc: { [`customer_cartData.${productId}`]: 1 } } 
         ); 
 
-        res.json({ message: "Added" }); 
+        res.json({ message: "Product Added to Cart and Database" }); 
     } catch (error) {
         console.error("Error adding product to cart:", error);
         res.status(500).send({ errors: "Failed to add product" }); 
     }
 });
-
-//API Endpoint: Get Shopping Cart Data
-app.post('/getshoppingcartdata',fetchCustomer,async(req,res)=>{
-    console.log("Get Shopping Cart Data");
-    let customerData = await Customer.findOne({_id})
-})
 
 // API Endpoint: Remove Product from Cart
 app.post('/removeproductfromcart', fetchCustomer, async (req, res) => {
@@ -262,14 +256,19 @@ app.post('/removeproductfromcart', fetchCustomer, async (req, res) => {
             { $inc: { [`customer_cartData.${productId}`]: -1 } }
         );  
 
-        // Send success response
-        res.send("Removed");
+        res.json({ message: "Product Removed to Cart and Database" }); 
     } catch (error) {
         console.error("Error removing product from cart:", error);
         res.status(500).send({ errors: "Failed to remove product" }); 
     }
 });
 
+//API Endpoint: Get Shopping Cart Data
+app.post('/getallproductsfromcart',fetchCustomer,async(req,res)=>{
+    console.log("Get Shopping Cart Data");
+    let customerData = await Customer.findOne({_id:req.user.id});
+    res.json(customerData.customer_cartData);
+})
 
 const startServer = () => {
     app.listen(portNumber, (error) => {

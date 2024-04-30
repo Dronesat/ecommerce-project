@@ -26,6 +26,20 @@ const EcommerceContextProvider = (props) => {
         fetch('http://localhost:4000/getproductlist')
         .then((response)=>response.json())
         .then((data)=>setProductList(data))
+
+        if(localStorage.getItem('auth-token')){
+            fetch('http://localhost:4000/getallproductsfromcart',{
+                method:'POST',
+                headers:{
+                    Accept:'application/form-data',
+                    'auth-token': `${localStorage.getItem('auth-token')}`,  
+                    'Content-Type': 'application/json',
+                },
+                body:"",
+            })
+            .then((response)=>response.json())
+            .then((productCartData)=>setshoppingCart(productCartData))
+        }
     },[])
 
     //Function add product to cart
@@ -52,7 +66,7 @@ const EcommerceContextProvider = (props) => {
                 body:JSON.stringify({"productId":productID}),
             })
             .then((response)=>response.json())
-            .then((data)=>console.log(data));
+            .then((productData)=>console.log(productData));
         }
     }
 
@@ -80,7 +94,7 @@ const EcommerceContextProvider = (props) => {
                 body:JSON.stringify({"productId":productID}),
             })
             .then((response)=>response.json())
-            .then((data)=>console.log(data));
+            .then((productData)=>console.log(productData));
         }
     }
 

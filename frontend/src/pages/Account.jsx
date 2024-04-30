@@ -69,7 +69,7 @@ const Account = () => {
             // If registration was successful:
             if (registrationData.success) {
                 // Store the authentication token in local storage 
-                localStorage.setItem('authToken', registrationData.token);
+                localStorage.setItem('auth-token', registrationData.token);
                 window.location.replace("/home");
                 alert("Account Registered Successfully");
      
