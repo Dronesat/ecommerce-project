@@ -40,6 +40,20 @@ const EcommerceContextProvider = (props) => {
             }
             return newCart;
         });
+        //Check if customer is logged in?
+        if (localStorage.getItem('auth-token')) {
+            fetch('http://localhost:4000/addproducttocart',{
+                method:'POST',
+                headers:{
+                    Accept: 'application/form-data',
+                    'auth-token': `${localStorage.getItem('auth-token')}`,  
+                    'Content-Type': 'application/json',
+                },
+                body:JSON.stringify({"productId":productID}),
+            })
+            .then((response)=>response.json())
+            .then((data)=>console.log(data));
+        }
     }
 
     //Function remove product from cart
@@ -54,6 +68,20 @@ const EcommerceContextProvider = (props) => {
             } 
             return updatedCart;
         });
+        //Check if customer is logged in?
+        if (localStorage.getItem('auth-token')) {
+            fetch('http://localhost:4000/removeproductfromcart',{
+                method:'POST',
+                headers:{
+                    Accept: 'application/form-data',
+                    'auth-token': `${localStorage.getItem('auth-token')}`,  
+                    'Content-Type': 'application/json',
+                },
+                body:JSON.stringify({"productId":productID}),
+            })
+            .then((response)=>response.json())
+            .then((data)=>console.log(data));
+        }
     }
 
     //Function calculate total prices for shopping cart

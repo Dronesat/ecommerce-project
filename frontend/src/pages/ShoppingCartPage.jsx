@@ -18,7 +18,7 @@ const ShoppingCartPage = () => {
         {productList.map((product)=>{
             if(shoppingCart[product.product_id] > 0)
             {
-                return <div>
+                return <div key={product.product_id}>
                 <div className='shoppingcart-productlisting'>
                     <img className='shoppingcart-productlisting-icon' src={product.product_image} alt="" />
                     <p>{product.product_name}</p>

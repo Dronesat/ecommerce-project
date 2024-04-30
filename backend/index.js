@@ -13,6 +13,7 @@ require('dotenv').config();
 //Import Models Schema 
 const Product = require('./modelsSchema/productSchema');
 const Customer = require('./modelsSchema/customerSchema');
+const { unsubscribe } = require("diagnostics_channel");
 
 app.use(express.json()); //All requests from response will auto pass through json
 app.use(cors()); //Frontend(ReactJS) connects to backend(ExpressApp) on port 4000
@@ -142,7 +143,7 @@ app.post('/signup', async (req, res) => {
 
         // 3. JWT Authentication
         const customerDataForToken = {
-            customer: {
+            user: {
                 id: newCustomer.customer_id 
             }
         };
@@ -158,17 +159,17 @@ app.post('/signup', async (req, res) => {
 app.post('/login', async (req, res) => {
     try {
         // Attempt to find the user by email
-        const existingUser = await Customer.findOne({ customer_email: req.body.customer_email });
+        const existingCustomer = await Customer.findOne({ customer_email: req.body.customer_email });
 
-        if (existingUser) {
+        if (existingCustomer) {
             // Compare provided password with stored password
-            const isPasswordMatch = req.body.customer_password === existingUser.customer_password;
+            const isPasswordMatch = req.body.customer_password === existingCustomer.customer_password;
 
             if (isPasswordMatch) {
                 // Create payload for the JWT token
                 const tokenPayload = {
                     user: {
-                        id: existingUser.id 
+                        id: existingCustomer.id 
                     }
                 };
 
@@ -187,6 +188,88 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ success: false, errors: "Error during login" });
     }
 });
+
+const fetchCustomer = async (req, res, next) => {
+    // Extract the auth token from the request header
+    const authToken = req.header('auth-token');
+
+    // If no token is found, send an authentication error response
+    if (!authToken) {
+        return res.status(401).send({ errors: "Authentication Failed: Invalid Token" });
+    }
+
+    try {
+        // Attempt to verify the JWT token
+        const decodedToken = jsonwebtoken.verify(authToken, process.env.JWT_TOKEN_KEY);
+
+        // If the token doesn't contain a user or a user ID, send an authentication error
+        if (!decodedToken.user || !decodedToken.user.id) {
+            return res.status(401).send({ errors: "Authentication Failed: Invalid Token" });
+        }
+
+        // Token is valid, attach user data to the request object for later use
+        req.user = decodedToken.user;
+        next(); 
+    } catch (error) {
+        // Log the error and send a generic authentication error response
+        console.error("Error in fetchCustomer:", error);
+        res.status(401).send({ errors: "Authentication Failed: Invalid Token" });
+    }
+};
+
+
+// API Endpoint: Add Product to Cart
+app.post('/addproducttocart', fetchCustomer, async (req, res) => {
+    try {
+        console.log("Product Added to Cart", req.body.productId);
+        // Get customer ID from the authenticated request
+        const customerId = req.user.id; 
+        const productId = req.body.productId;
+
+        // Update the customer's cart in the database, incrementing the product quantity 
+        await Customer.findOneAndUpdate(
+            { _id: customerId },
+            { $inc: { [`customer_cartData.${productId}`]: 1 } } 
+        ); 
+
+        res.json({ message: "Added" }); 
+    } catch (error) {
+        console.error("Error adding product to cart:", error);
+        res.status(500).send({ errors: "Failed to add product" }); 
+    }
+});
+
+//API Endpoint: Get Shopping Cart Data
+app.post('/getshoppingcartdata',fetchCustomer,async(req,res)=>{
+    console.log("Get Shopping Cart Data");
+    let customerData = await Customer.findOne({_id})
+})
+
+// API Endpoint: Remove Product from Cart
+app.post('/removeproductfromcart', fetchCustomer, async (req, res) => {
+    try {
+        console.log("Product Removed from Cart", req.body.productId);
+        // Get customer ID from the authenticated request
+        const customerId = req.user.id;
+        const productId = req.body.productId;
+
+        // Update customer's cart, decrement the product quantity (only if quantity > 0)
+        await Customer.findOneAndUpdate(
+            { 
+                _id: customerId, 
+                [`customer_cartData.${productId}`]: { $gt: 0 } 
+            },
+            { $inc: { [`customer_cartData.${productId}`]: -1 } }
+        );  
+
+        // Send success response
+        res.send("Removed");
+    } catch (error) {
+        console.error("Error removing product from cart:", error);
+        res.status(500).send({ errors: "Failed to remove product" }); 
+    }
+});
+
 
 const startServer = () => {
     app.listen(portNumber, (error) => {
