@@ -5,6 +5,7 @@ import { EcommerceContext } from '../../EcommerceContext/EcommerceContext'
 
 const Trending = (props) => {
   const {productList} = useContext(EcommerceContext);
+  const trendingStatus = 'yes';
   return (
     <div className='trending'>
         <hr/>
@@ -12,7 +13,7 @@ const Trending = (props) => {
         <hr/>
         <div className='trending-products'>
             {productList.map((product,i)=>{
-              if (props.category === product.product_category && props.trending === product.product_trending){
+              if (props.category === product.product_category && trendingStatus === product.product_trending){
                 return <ProductCard 
                 key={i} 
                 product_id={product.product_id} 

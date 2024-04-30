@@ -6,7 +6,7 @@ const ListProductPage = () => {
 
   const fetchAllProducts = async () => {
     try {
-        const response = await fetch('http://localhost:4000/getallproducts');
+        const response = await fetch('http://localhost:4000/getproductlist');
         const productData = await response.json();
         setProductList(productData);
     } catch (error) {

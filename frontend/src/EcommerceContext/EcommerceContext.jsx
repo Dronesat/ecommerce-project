@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
-import productList from '../Assets/productList';
+import { useEffect } from "react";
+//import productList from '../Assets/productList'; Transition from local to database
 
 //Create the context any initialise with null 
 export const EcommerceContext = createContext(null);
@@ -7,7 +8,8 @@ export const EcommerceContext = createContext(null);
 //Create one empty card
 const initialiseEmptyCart  = () => {
     let initialCart  = {};
-    for (let i = 0; i < productList.length+1; i++) {
+    let maxCartProducts = 301;
+    for (let i = 0; i < maxCartProducts; i++) {
         initialCart[i] = 0; 
     }
     return initialCart ;
@@ -18,12 +20,19 @@ const initialiseEmptyCart  = () => {
 //Access functions and values in any components
 const EcommerceContextProvider = (props) => {
     const [shoppingCart,setshoppingCart] = useState(initialiseEmptyCart());
+    const [productList,setProductList] = useState([]);
+
+    useEffect(()=>{
+        fetch('http://localhost:4000/getproductlist')
+        .then((response)=>response.json())
+        .then((data)=>setProductList(data))
+    },[])
 
     //Function add product to cart
     const addProductToCart = (productID) => {
         setshoppingCart((previousCart) => {
             const newCart = { ...previousCart }; // Create a copy of the cart
-            // Increment existing item or initialize if new
+            // Increment existing item or initialise if new
             if (newCart[productID]) {
                 newCart[productID] += 1; 
             } else {

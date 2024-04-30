@@ -106,11 +106,11 @@ app.post('/removeproduct', async (req, res) => {
 });
 
 // API Endpoint: Retrieve all products from database
-app.get('/getallproducts', async (req, res) => {
+app.get('/getproductlist', async (req, res) => {
     try{
-        const allProducts = await Product.find({});
+        const productList = await Product.find({});
         console.log("Retrieved all products from database");
-        res.send(allProducts);
+        res.send(productList);
     } catch (error) {
         console.error("Error retrieving products:", error);
         res.status(500).json({ error: "Failed to retrieve products" });
