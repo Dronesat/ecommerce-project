@@ -7,6 +7,15 @@ import { EcommerceContext } from '../../EcommerceContext/EcommerceContext'
 const ProductDisplayDetail = (props) => {
     const {product} = props;
     const {addProductToCart} = useContext(EcommerceContext);
+
+    const handleAddToCart = () => {
+        if (localStorage.getItem('auth-token')) {
+            addProductToCart(product.product_id);
+        } else {
+            alert("Please Login before proceed");
+        }
+    }
+
   return (
     <div className='productdisplaypage'>
         <div className='productdisplaypage-left'>
@@ -41,7 +50,7 @@ const ProductDisplayDetail = (props) => {
                 <button>XL</button>
             </div>
             <hr />
-            <button onClick={()=>{addProductToCart(product.product_id)}} className='productdisplaypage-right-addcart'>
+            <button onClick={handleAddToCart} className='productdisplaypage-right-addcart'>
                 ADD TO SHOPPING CART
             </button>
         </div>

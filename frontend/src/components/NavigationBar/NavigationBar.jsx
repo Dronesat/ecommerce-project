@@ -31,13 +31,13 @@ const NavigationBar = () => {
 
   return (
     <nav className="navigationbar">
-      <Link to="/home" className="navigationbar-title">
+      <Link to="/" className="navigationbar-title">
           The E-Commerce Project
         </Link>
 
         <ul className="navigation-links">
           <li>
-            <Link to="/home">HomePage</Link>
+            <Link to="/">HomePage</Link>
           </li>
           <li>
             <Link to="/men">Men</Link>

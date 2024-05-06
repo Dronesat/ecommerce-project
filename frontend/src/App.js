@@ -17,7 +17,7 @@ function App() {
         <NavigationBar/>
         <div className='container'></div>
           <Routes>
-            <Route path='/home' element={<HomePage/>} />
+            <Route path='/' element={<HomePage/>} />
             <Route path='/men' element={<MenPage/>} />
             <Route path='/women' element={<WomenPage/>} />
             <Route path='/kid' element={<KidPage/>} />

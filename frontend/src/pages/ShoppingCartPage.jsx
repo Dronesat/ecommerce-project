@@ -31,7 +31,7 @@ const ShoppingCartPage = () => {
             </div>
             } return null;
         })}
-        <div className='shoppingcart-bottom'>
+        <div className='shoppingcart-summary'>
             <div className='shoppingcart-total'>
                 <h1>SUMMARY</h1>
                 <div>

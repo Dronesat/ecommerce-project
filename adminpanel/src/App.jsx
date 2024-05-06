@@ -13,6 +13,7 @@ const App = () => {
         <Routes>
           <Route path='/addproduct' element={<AddProductPage/>} /> 
           <Route path='/listproduct' element={<ListProductPage/>} />
+          <Route path='*' element={<ListProductPage/>} />
         </Routes>
         <SiteFooter/>
       </BrowserRouter>

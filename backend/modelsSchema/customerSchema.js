@@ -7,13 +7,13 @@ const CustomerSchema = new mongoose.Schema({
     },
     customer_email: {
         type: String,
-        unique: true, // Ensures email addresses are unique
+        unique: true, 
     },
     customer_password: {
         type: String,
     },
     customer_cartData: {
-        type: Object, // Consider a more specific schema for cart data if needed
+        type: Object, 
     },
     date: {
         type: Date,

@@ -31,7 +31,6 @@ const EcommerceContextProvider = (props) => {
                 setProductList(data);
             } catch (error) {
                 console.error('Error fetching products:', error);
-                // Handle the error appropriately (e.g., display an error message)
             }
         };
         // Function to fetch shopping cart data if the user is logged in

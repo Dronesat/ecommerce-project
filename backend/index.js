@@ -44,7 +44,7 @@ const imageUpload = multer({ storage: imageStorage });
 // API Endpoints: Upload images
 //1. Configure image serving: 'upload/images' publicly accessible via URLs starting with '/images'
 app.use('/images', express.static('upload/images'));
-//2. Image upload endpoint:
+//2. Image upload endpoint
 app.post('/upload', imageUpload.single('product'), (req, res) => {
     //Check if a file was actually uploaded
     if (!req.file) { 
@@ -134,7 +134,7 @@ app.post('/signup', async (req, res) => {
         //1. Check for existing email
         const existingCustomer = await Customer.findOne({ customer_email: req.body.customer_email });
         if (existingCustomer) {
-            return res.status(400).json({ success: false, errors: "Account already exists with this email" });
+            return res.status(400).json({ success: false, errors: "Account already exists with this email. Please try signing in or use a different email" });
         }
 
         //2. Create new customer with empty cart

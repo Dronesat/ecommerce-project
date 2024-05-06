@@ -75,7 +75,7 @@ const AddProductPage = () => {
     
   return (
     <div className='addproduct'>
-      <h1>Add Product to Website</h1>
+      <h1>Add New Product</h1>
       <div className='addproduct-name'>
         <p>Product Name</p>
         <input value={productDetails.product_name} onChange={inputChangeHandler} type="text" name='product_name' placeholder='Enter Product Name'/>
