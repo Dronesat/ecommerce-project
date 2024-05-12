@@ -25,8 +25,8 @@ const Account = () => {
             const response = await fetch('http://localhost:4000/login', {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json', // Indicate we expect a JSON response
-                    'Content-Type': 'application/json' // Specify our data is JSON
+                    'Accept': 'application/json', // Indicate expect a JSON response
+                    'Content-Type': 'application/json' // Specify data is JSON
                 },
                 body: JSON.stringify(customerData) // Convert customer data to JSON for sending
             });
@@ -57,8 +57,8 @@ const Account = () => {
             const response = await fetch('http://localhost:4000/signup', {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json', // Indicate we expect a JSON response
-                    'Content-Type': 'application/json' // Specify our data is JSON
+                    'Accept': 'application/json', // Indicate  expect a JSON response
+                    'Content-Type': 'application/json' // Specify data is JSON
                 },
                 body: JSON.stringify(customerData) // Convert customer data to JSON for sending
             });

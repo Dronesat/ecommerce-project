@@ -304,3 +304,5 @@ const startServer = () => {
 }
 //Call the function to start the server
 startServer();
+
+module.exports = app; // Export the app for testing

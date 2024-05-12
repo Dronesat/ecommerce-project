@@ -35,3 +35,30 @@ const CustomerSchema = new mongoose.Schema({
   <Link to="/account">Account</Link>
 </NavigationBar>
 
+describe('Product Endpoints', () => {
+  it('should add a product to the database', async () => {
+      const productData = {
+          product_name: "Example Product",
+          product_description: "Example Description",
+          product_price: 19.99,
+          product_trending: false, 
+          original_price: 19.99, 
+          sale_price: 19.99, 
+          product_category: "Default Category", 
+          product_image: "placeholder.jpg" 
+      };
+      const response = await request(app)
+          .post('/addproduct')
+          .send(productData);
+
+      expect(response.statusCode).toBe(200);
+      expect(response.body.success).toBeTruthy();
+      expect(response.body.product_name).toBe(productData.product_name);
+  });
+
+  it('should retrieve all products', async () => {
+      const response = await request(app).get('/getproductlist');
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toBeInstanceOf(Array);
+  });
+});
