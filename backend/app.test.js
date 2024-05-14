@@ -36,7 +36,7 @@ describe('POST /signup', () => {
             .post('/signup')
             .send({
                 customer_name: "John Doe",
-                customer_email: "johndoe@example.com",
+                customer_email: "johndoe@example.comm",
                 customer_password: "123456"
             });
         expect(response.statusCode).toBe(200);

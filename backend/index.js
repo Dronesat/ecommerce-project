@@ -6,7 +6,6 @@ const jsonwebtoken = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path"); //Access to backend directory in ExpressApp
 const cors = require("cors"); //Provide access to ReactProject
-const bcrypt = require('bcryptjs');
 
 //Import dotenv allow access to .env 
 require('dotenv').config();
@@ -45,7 +44,7 @@ const imageUpload = multer({ storage: imageStorage });
 // API Endpoints: Upload images
 //1. Configure image serving: 'upload/images' publicly accessible via URLs starting with '/images'
 app.use('/images', express.static('upload/images'));
-//2. Image upload endpoint
+//2. Image upload endpoint:
 app.post('/upload', imageUpload.single('product'), (req, res) => {
     //Check if a file was actually uploaded
     if (!req.file) { 
@@ -135,13 +134,9 @@ app.post('/signup', async (req, res) => {
         //1. Check for existing email
         const existingCustomer = await Customer.findOne({ customer_email: req.body.customer_email });
         if (existingCustomer) {
-            return res.status(400).json({ success: false, errors: "Account already exists with this email. Please try signing in or use a different email" });
+            return res.status(400).json({ success: false, errors: "Account already exists with this email" });
         }
 
-        // Hash the password
-        const saltRounds = 10; // Controls cost of hashing; higher = more secure but slower
-        const hashedPassword = await bcrypt.hash(req.body.customer_password, saltRounds);
-        
         //2. Create new customer with empty cart
         const initialCart = {};
         for (let i = 0; i < 300; i++) {
@@ -150,8 +145,7 @@ app.post('/signup', async (req, res) => {
         const newCustomer = new Customer({
             customer_name: req.body.customer_name,
             customer_email: req.body.customer_email,
-            //customer_password: req.body.customer_password,
-            customer_password: hashedPassword, 
+            customer_password: req.body.customer_password, 
             customer_cartData: initialCart,
         });
         await newCustomer.save();
@@ -178,8 +172,7 @@ app.post('/login', async (req, res) => {
 
         if (existingCustomer) {
             // Compare provided password with stored password
-            //const isPasswordMatch = req.body.customer_password === existingCustomer.customer_password;
-            const isPasswordMatch = await bcrypt.compare(req.body.customer_password, existingCustomer.customer_password);
+            const isPasswordMatch = req.body.customer_password === existingCustomer.customer_password;
 
             if (isPasswordMatch) {
                 // Create payload for the JWT token
@@ -304,5 +297,3 @@ const startServer = () => {
 }
 //Call the function to start the server
 startServer();
-
-module.exports = app; // Export the app for testing
