@@ -1,6 +1,6 @@
 # SMEs E-commerce Platform
  (Final Year Project)
- A E-commerce project designed  for small and medium businesses in clothing industry
+ An E-commerce platform designed  for small and medium businesses(SMEs) in clothing industry
 
 ## Feature
 This E-commerce platform provides the following feature
@@ -14,7 +14,9 @@ This project was built using the following technologies:
 - Frontend: [ReactJS](https://reactjs.org/)
 - Backend: [Node.js](https://nodejs.org/en), [ExpressJS](https://expressjs.com/)
 - Database: [MongoDB](https://www.mongodb.com/)
-- Other: jsonwebtoken (authentication), multer(image uploads), cors
+- Other: [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) (authentication), 
+         [multer](https://www.npmjs.com/package/multer) (image uploads),
+         [cors](https://www.npmjs.com/package/cors)
 
 ## Installation
 1. Clone the repository: `git clone https://github.com/Dronesat/ecommerce-project.git`
@@ -22,7 +24,9 @@ This project was built using the following technologies:
     - Frontend: `cd frontend && npm install`
     - Admin Panel: `cd adminpanel && npm install`
     - Backend: `cd backend && npm install`
-3. Environment Variables: Create a .env file in the backend root directory. Add the following (replace with your actual values): 
+3. Environment Variables: 
+    Create a .env file in the backend root directory. 
+    Add the following (replace with your actual values): 
     - MONGODB_URI - Your MongoDB connection string
     - JWT_TOKEN_KEY - A secret key for JWT authentication
 4. Start Servers: 
@@ -31,7 +35,7 @@ This project was built using the following technologies:
     - Backend (Server): `node .\index.js` (Runs on http://localhost:4000 by default)
 
 ## Usage
-1. Access Admin Panel: Go to `http://localhost:3000/admin` to and manage products.
+1. Access Admin Panel: Go to `http://localhost:5713` to and manage products.
 2. Visit Storefront: Go to `http://localhost:3000` to see the customer-facing site.
 
 ## API Documentation
